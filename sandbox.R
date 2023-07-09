@@ -15,6 +15,9 @@ a<- mtcars
 mtcarsdata<- as.matrix(mtcars)+
 heatmap(mtcarsdata, scale="column")
 
+#pheatmap
+pheatmap(mtcars, scale="column", show_rownames=TRUE, fontsize_row=10, fontsize_col= 10)
+
 #boxplot
 a <- mtcars
 ggplot(a, aes(x=cyl, y=mpg, color= cyl))+
@@ -22,13 +25,4 @@ ggplot(a, aes(x=cyl, y=mpg, color= cyl))+
     xlab("cyl")+
     ylab("mpg")
 
-#how do i make a dotplot with this...looked at Rachel's code from figure 2F
-do_DotPlot(mtcars,
-features= #what goes here?
-,cluster.idents= TRUE
-use_viridis= TRUE
-viridis_color_map = 'viridis',
-viridis_direction = 1)+
-ggplot2::theme(legend.position = 'bottom')
 
-#how do i make volcano plots without log2FC data(mtcars) or can i not do that?
