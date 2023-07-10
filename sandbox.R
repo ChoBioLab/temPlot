@@ -9,6 +9,18 @@ ggplot(a, aes(cyl,mpg, color= cyl))+
     theme_light() +
     theme(legend.position="none", legend.title = element_blank()) +
     theme(axis.text = element_text(colour = "black", family = "Arial", size = 14), axis.title = element_text(size = 14))
+#in function
+geompointfunction <- function(dataset, xval, yval){
+    return(
+    ggplot(dataset, aes_string(x= xval,y= yval, color= xval))+ 
+        geom_point(size = 2) +  
+        xlab(paste(xval,"for diff cars", collapse = NULL))+ 
+        ylab(paste(yval,"for diff cars", collapse = NULL)) +
+        theme_light() +
+        theme(legend.position="none", legend.title = element_blank()) +
+        theme(axis.text = element_text(colour = "black", family = "Arial", size = 14), axis.title = element_text(size = 14))
+    )
+}
 
 #heatmap
 a<- mtcars
