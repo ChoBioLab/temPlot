@@ -21,6 +21,7 @@ geompointfunction <- function(dataset, xval, yval){
         theme(axis.text = element_text(colour = "black", family = "Arial", size = 14), axis.title = element_text(size = 14))
     )
 }
+geompointfunction(mtcars, "mpg", "cyl")
 
 #heatmap
 a<- mtcars
@@ -31,10 +32,20 @@ heatmap(mtcarsdata, scale="column")
 pheatmap(mtcars, scale="column", show_rownames=TRUE, fontsize_row=10, fontsize_col= 10)
 
 #boxplot
-a <- mtcars
-ggplot(a, aes(x=cyl, y=mpg, color= cyl))+
-    geom_boxplot()+
-    xlab("cyl")+
-    ylab("mpg")
+a<- mtcars
+ggplot(a, aes(x = factor(cyl), y = mpg, color = factor(cyl))) +
+  geom_boxplot() +
+  xlab("cyl") +
+  ylab("mpg")
+#in function
+geomboxfunction <- function(dataset1, xval1, yval1) {
+  dataset1[[xval1]] <- factor(dataset1[[xval1]])
+  return(
+    ggplot(dataset1, aes_string(x = xval1, y = yval1, color = xval1)) +
+      geom_boxplot() +
+      xlab(xval1) +
+      ylab(yval1)
+  )
+}
 
-
+geomboxfunction(mtcars, "cyl", "mpg")
