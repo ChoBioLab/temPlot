@@ -49,3 +49,18 @@ geomboxfunction <- function(dataset1, xval1, yval1) {
 }
 
 geomboxfunction(mtcars, "cyl", "mpg")
+
+
+#venn diagram
+sepallength <- paste("sepal.length",1:10,sep="")
+set.seed(20210419)
+x<- list(setosa = subset(iris, Species == "setosa")$Sepal.Length,
+  versicolor = subset(iris, Species == "versicolor")$Sepal.Length,
+  virginica = subset(iris, Species == "virginica")$Sepal.Length   
+        )
+
+library(ggplot2)
+library(ggVennDiagram)
+ggVennDiagram(x) + scale_fill_gradient(low="blue",high = "red")
+
+
