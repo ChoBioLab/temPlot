@@ -64,3 +64,37 @@ library(ggVennDiagram)
 ggVennDiagram(x) + scale_fill_gradient(low="blue",high = "red")
 
 
+#upsetplot
+library(ComplexUpset)
+
+set.seed(20190708)
+genes <- paste("gene",1:1000,sep="")
+g <- list(
+    A = sample(genes,300), 
+    B = sample(genes,525), 
+    C = sample(genes,440),
+    D = sample(genes,350) 
+    )
+
+#binary data as data frame
+binary_matrix <- sapply(g, function(set_genes) genes %in% set_genes)
+a <- as.data.frame(binary_matrix)
+                        
+upset(a, 
+    intersect, 
+    name= "genes",
+    width_ratio = 0.1,
+    queries= list(
+        upset_query(
+            #highlighting any intersections
+            intersect=c("A","D"),
+            color="red",
+            fill="red"
+        ),
+            #highlighting any sets on size bar
+        upset_query(
+            set="B",
+            fill="blue"
+        )
+    )
+)
