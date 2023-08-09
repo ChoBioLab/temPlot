@@ -77,7 +77,7 @@ g <- list(
     D = sample(genes,350) 
     )
 
-#binary data as data frame
+#list into binary data and then into data frame
 binary_matrix <- sapply(g, function(set_genes) genes %in% set_genes)
 a <- as.data.frame(binary_matrix)
                         
