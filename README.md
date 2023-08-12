@@ -53,8 +53,9 @@ upset(dataset,
 )
 }
 ```
-Run
+Run:
 ```
 upsetplotting(a, "gene overlap", 25)
 ```
+to get:
 <img width="1440" alt="Screenshot 2023-08-12 at 12 06 39 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/7c9eff38-43e9-4fed-81fe-1bb870a77433">
