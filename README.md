@@ -2,7 +2,7 @@
 A collection of useful plotting template functions
 
 
-Upset Plots:
+## Upset Plots:
 
 Example data set
 ```
@@ -59,3 +59,38 @@ upsetplotting(a, "gene overlap", 25)
 ```
 to get:
 <img width="1440" alt="Screenshot 2023-08-12 at 12 06 39 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/7c9eff38-43e9-4fed-81fe-1bb870a77433">
+
+Note:
+This part of the code can be manually modified to highlight specific intersections or set sizes as needed.
+```
+queries= list(
+        upset_query(
+            #highlighting any # of intersections
+            intersect=c("A","D"),
+            color="red",
+            fill="red"
+        ),
+            #highlighting any sets on size bar
+        upset_query(
+            set="B",
+            fill="blue"
+        )
+    )
+```
+For example, you may want to highlight an intersection pink between 3 groups called bubbles, blossom, and buttercup. 
+In addition, maybe you'd like to highlight the blossom set orange.
+This code would be modified to read:
+```
+upset_query(
+    intersect=c("bubbles","blossom","buttercup"),
+    color="pink",
+    fill="pink"
+    ),
+upset_query(
+    set="blossom",
+    fill="orange"
+    )
+```
+
+
+## Dot Plots:
