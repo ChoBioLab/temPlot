@@ -114,7 +114,8 @@ geompointfunction <- function(dataset, xval, yval, xlabel, ylabel, maintitle){
 ```
 
 Example using mtcars dataset:
-Run
+
+Run:
 ```
 geompointfunction(mtcars, "mpg", "cyl", "mpg for diff cars", "cyl for diff cars", "Mpg vs Cyl in Cool Cars")
 ```
