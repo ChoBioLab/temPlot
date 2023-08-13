@@ -94,3 +94,29 @@ upset_query(
 
 
 ## Dot Plots:
+```
+geompointfunction <- function(dataset, xval, yval, xlabel, ylabel, maintitle){
+    return(
+    ggplot(dataset, aes_string(x= xval,y= yval, color= xval))+ 
+        geom_point(size = 2) +  
+        labs(x=paste(xlabel, collapse = NULL),
+        y=paste(ylabel, collapse = NULL), 
+        title= paste(maintitle, collapse = NULL)
+        ) +
+        theme_light() +
+        theme(legend.position="none", 
+        legend.title = element_blank(), 
+        plot.title = element_text(hjust=0.5)
+        ) +
+        theme(axis.text = element_text(colour = "black", family = "Arial", size = 14), axis.title = element_text(size = 14))
+    )
+}
+```
+
+Example using mtcars dataset:
+Run
+```
+geompointfunction(mtcars, "mpg", "cyl", "mpg for diff cars", "cyl for diff cars", "Mpg vs Cyl in Cool Cars")
+```
+to get:
+<img width="1111" alt="Screenshot 2023-08-13 at 10 41 39 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/5c1acb0e-a65f-4128-b295-b8f86a410891">
