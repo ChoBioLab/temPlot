@@ -10,18 +10,23 @@ ggplot(a, aes(cyl,mpg, color= cyl))+
     theme(legend.position="none", legend.title = element_blank()) +
     theme(axis.text = element_text(colour = "black", family = "Arial", size = 14), axis.title = element_text(size = 14))
 #in function
-geompointfunction <- function(dataset, xval, yval, xlabel, ylabel){
+geompointfunction <- function(dataset, xval, yval, xlabel, ylabel, maintitle){
     return(
     ggplot(dataset, aes_string(x= xval,y= yval, color= xval))+ 
         geom_point(size = 2) +  
-        xlab(paste(xlabel, collapse = NULL))+ 
-        ylab(paste(ylabel, collapse = NULL)) +
+        labs(x=paste(xlabel, collapse = NULL),
+        y=paste(ylabel, collapse = NULL), 
+        title= paste(maintitle, collapse = NULL)
+        ) +
         theme_light() +
-        theme(legend.position="none", legend.title = element_blank()) +
+        theme(legend.position="none", 
+        legend.title = element_blank(), 
+        plot.title = element_text(hjust=0.5)
+        ) +
         theme(axis.text = element_text(colour = "black", family = "Arial", size = 14), axis.title = element_text(size = 14))
     )
 }
-geompointfunction(mtcars, "mpg", "cyl", "mpg for diff cars", "cyl for diff cars")
+geompointfunction(mtcars, "mpg", "cyl", "mpg for diff cars", "cyl for diff cars", "Mpg vs Cyl in Cool Cars")
 
 #heatmap
 a<- mtcars
@@ -38,17 +43,22 @@ ggplot(a, aes(x = factor(cyl), y = mpg, color = factor(cyl))) +
   xlab("cyl") +
   ylab("mpg")
 #in function
-geomboxfunction <- function(dataset1, xval1, yval1) {
+geomboxfunction <- function(dataset1, xval1, yval1, maintitle) {
   dataset1[[xval1]] <- factor(dataset1[[xval1]])
   return(
     ggplot(dataset1, aes_string(x = xval1, y = yval1, color = xval1)) +
       geom_boxplot() +
-      xlab(xval1) +
-      ylab(yval1)
+      labs(x=paste(xval1, collapse = NULL),
+        y=paste(yval1, collapse = NULL), 
+        title= paste(maintitle, collapse = NULL)
+        ) +
+      theme(
+        plot.title = element_text(hjust=0.5)
+          )
   )
 }
 
-geomboxfunction(mtcars, "cyl", "mpg")
+geomboxfunction(mtcars, "cyl", "mpg", geomboxfunction(mtcars, "cyl", "mpg", "Cyl vs Mpg in Cool Cars"))
 
 
 #venn diagram
