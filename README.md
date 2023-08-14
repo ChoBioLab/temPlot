@@ -121,3 +121,22 @@ geompointfunction(mtcars, "mpg", "cyl", "mpg for diff cars", "cyl for diff cars"
 ```
 to get:
 <img width="1111" alt="Screenshot 2023-08-13 at 10 41 39 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/5c1acb0e-a65f-4128-b295-b8f86a410891">
+
+## Box Plots:
+
+```
+geomboxfunction <- function(dataset1, xval1, yval1, maintitle) {
+  dataset1[[xval1]] <- factor(dataset1[[xval1]])
+  return(
+    ggplot(dataset1, aes_string(x = xval1, y = yval1, color = xval1)) +
+      geom_boxplot() +
+      labs(x=paste(xval1, collapse = NULL),
+        y=paste(yval1, collapse = NULL), 
+        title= paste(maintitle, collapse = NULL)
+        ) +
+      theme(
+        plot.title = element_text(hjust=0.5)
+          )
+  )
+}
+```
