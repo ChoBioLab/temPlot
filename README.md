@@ -49,6 +49,10 @@ upset(dataset,
             set="B",
             fill="blue"
         )
+    ),
+    set_sizes=(
+        upset_set_size()
+        + theme(axis.ticks.x=element_line())
     )
 )
 }
