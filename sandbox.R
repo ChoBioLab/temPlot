@@ -1,3 +1,31 @@
+#HELLO I PUT THE CODE HEREEE :D
+upsetplotting2 <- function(dataset,title,min_int,high_int=FALSE, intgroups) {
+upset(dataset, 
+    intersect, 
+    name= paste(title),
+    width_ratio = 0.1,
+    min_size = min_int,
+    if (high_int){
+    queries= list(
+        upset_query(
+            #highlighting any # of intersections
+            intersect=intgroups,
+            color="red",
+            fill="red"
+        )
+    )
+},
+    set_sizes=(
+        upset_set_size()
+        + theme(axis.ticks.x=element_line())
+    )
+)
+}
+
+upsetplotting2(a, "plot title yay", 25, high_int= TRUE, intgroups= c("A","D"))
+
+
+#OTHERSTUFF
 #chris idk where to put any code so it's going here
 
 #scatterplot
