@@ -91,13 +91,15 @@ g <- list(
 binary_matrix <- sapply(g, function(set_genes) genes %in% set_genes)
 a <- as.data.frame(binary_matrix)
                         
-upset(a, 
+upsetplotting <- function(dataset,title,min_int) {
+upset(dataset, 
     intersect, 
-    name= "genes",
+    name= paste(title),
     width_ratio = 0.1,
+    min_size = min_int,
     queries= list(
         upset_query(
-            #highlighting any intersections
+            #highlighting any # of intersections
             intersect=c("A","D"),
             color="red",
             fill="red"
@@ -107,5 +109,10 @@ upset(a,
             set="B",
             fill="blue"
         )
+    ),
+    set_sizes=(
+        upset_set_size()
+        + theme(axis.ticks.x=element_line())
     )
 )
+}
