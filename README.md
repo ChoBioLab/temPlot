@@ -77,4 +77,5 @@ Run:
 geomboxfunction(mtcars, "cyl", "mpg", "cylinder", "miles per gallon", "Cyl vs Mpg in Cool Cars")
 ```
 to get:
+
 <img width="683" alt="Screenshot 2023-08-23 at 2 12 26 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/acbf8eba-49ed-4b24-b1a5-329d03a9a5c7">
