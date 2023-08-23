@@ -52,6 +52,7 @@ geomboxfunction <- function(dataset1, xval1, yval1, xlab1, ylab1, maintitle) {
         y=paste(ylab1, collapse = NULL), 
         title= paste(maintitle, collapse = NULL)
         ) +
+      theme_light()+
       theme(
         plot.title = element_text(hjust=0.5)
           )
