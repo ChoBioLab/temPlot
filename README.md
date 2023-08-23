@@ -80,3 +80,24 @@ to get:
 
 <img width="685" alt="Screenshot 2023-08-23 at 2 24 39 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/00c995db-f192-4480-8e9e-7292415fa2bd">
 
+## Venn Diagrams:
+Uses the ggVennDiagram function
+
+Requires x input to be a **list**
+
+Example using iris dataset:
+```
+x<- list(setosa = subset(iris, Species == "setosa")$Sepal.Length,
+  versicolor = subset(iris, Species == "versicolor")$Sepal.Length,
+  virginica = subset(iris, Species == "virginica")$Sepal.Length   
+        )
+```
+
+Run:
+```
+library(ggVennDiagram)
+ggVennDiagram(x) + scale_fill_gradient(low="blue",high = "red")
+```
+to get:
+
+<img width="782" alt="Screenshot 2023-08-23 at 2 28 54 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/7b47151e-2e5d-479d-9664-1f2c41bc2957">
