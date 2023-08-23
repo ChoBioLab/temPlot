@@ -29,93 +29,27 @@ Upset plotting function requires
 - dataset (as dataframe)
 - title (of plot in quotes "")
 - min_int (threshold for minimum number of intersections to be shown in plot)
+- high_int set to either TRUE or FALSE that highlights a specific intersection between sets red
+- intgroups, a vector of character strings with names of intersections you want to highlight 
 
-```
-upsetplotting <- function(dataset,title,min_int) {
-upset(dataset, 
-    intersect, 
-    name= paste(title),
-    width_ratio = 0.1,
-    min_size = min_int,
-    queries= list(
-        upset_query(
-            #highlighting any # of intersections
-            intersect=c("A","D"),
-            color="red",
-            fill="red"
-        ),
-            #highlighting any sets on size bar
-        upset_query(
-            set="B",
-            fill="blue"
-        )
-    ),
-    set_sizes=(
-        upset_set_size()
-        + theme(axis.ticks.x=element_line())
-    )
-)
-}
-```
+
 Run:
 ```
-upsetplotting(a, "gene overlap", 25)
+upsetplotting2(a, "plot title yay", 25, high_int = TRUE, intgroups = c("A", "D"))
 ```
 to get:
-<img width="1440" alt="Screenshot 2023-08-12 at 12 06 39 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/7c9eff38-43e9-4fed-81fe-1bb870a77433">
-
-Note:
-This part of the code can be manually modified to highlight specific intersections or set sizes as needed.
-```
-queries= list(
-        upset_query(
-            #highlighting any # of intersections
-            intersect=c("A","D"),
-            color="red",
-            fill="red"
-        ),
-            #highlighting any sets on size bar
-        upset_query(
-            set="B",
-            fill="blue"
-        )
-    )
-```
-For example, you may want to highlight an intersection pink between 3 groups called bubbles, blossom, and buttercup. 
-In addition, maybe you'd like to highlight the blossom set orange.
-This code would be modified to read:
-```
-upset_query(
-    intersect=c("bubbles","blossom","buttercup"),
-    color="pink",
-    fill="pink"
-    ),
-upset_query(
-    set="blossom",
-    fill="orange"
-    )
-```
+<img width="1317" alt="Screenshot 2023-08-23 at 1 46 57 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/34b14820-8687-46fd-ab7f-fb71e5f398b9">
 
 
 ## Dot Plots:
-```
-geompointfunction <- function(dataset, xval, yval, xlabel, ylabel, maintitle){
-    return(
-    ggplot(dataset, aes_string(x= xval,y= yval, color= xval))+ 
-        geom_point(size = 2) +  
-        labs(x=paste(xlabel, collapse = NULL),
-        y=paste(ylabel, collapse = NULL), 
-        title= paste(maintitle, collapse = NULL)
-        ) +
-        theme_light() +
-        theme(legend.position="none", 
-        legend.title = element_blank(), 
-        plot.title = element_text(hjust=0.5)
-        ) +
-        theme(axis.text = element_text(colour = "black", family = "Arial", size = 14), axis.title = element_text(size = 14))
-    )
-}
-```
+
+geompointfunction requires:
+- dataset
+- xval, independent variable
+- yval, dependent variable
+- xlabel, title of x-axis in quotes
+- ylabel, title of y-axis in quotes
+- maintitle, title of figure
 
 Example using mtcars dataset:
 
@@ -128,19 +62,19 @@ to get:
 
 ## Box Plots:
 
+geomboxfunction requires:
+- dataset1
+- xval1, independent variable
+- yval1, dependent variable
+- xlab1, title of x-axis in quotes
+- ylab1, title of y-axis in quotes
+- maintitle, title of figure
+
+Example using mtcars data set:
+
+Run:
 ```
-geomboxfunction <- function(dataset1, xval1, yval1, maintitle) {
-  dataset1[[xval1]] <- factor(dataset1[[xval1]])
-  return(
-    ggplot(dataset1, aes_string(x = xval1, y = yval1, color = xval1)) +
-      geom_boxplot() +
-      labs(x=paste(xval1, collapse = NULL),
-        y=paste(yval1, collapse = NULL), 
-        title= paste(maintitle, collapse = NULL)
-        ) +
-      theme(
-        plot.title = element_text(hjust=0.5)
-          )
-  )
-}
+geomboxfunction(mtcars, "cyl", "mpg", "cylinder", "miles per gallon", "Cyl vs Mpg in Cool Cars")
 ```
+to get:
+<img width="683" alt="Screenshot 2023-08-23 at 2 12 26 PM" src="https://github.com/ChoBioLab/temPlot/assets/137223320/acbf8eba-49ed-4b24-b1a5-329d03a9a5c7">
