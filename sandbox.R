@@ -90,7 +90,8 @@ g <- list(
 #list into binary data and then into data frame
 binary_matrix <- sapply(g, function(set_genes) genes %in% set_genes)
 a <- as.data.frame(binary_matrix)
-                        
+
+#manually editing
 upsetplotting <- function(dataset,title,min_int) {
 upset(dataset, 
     intersect, 
@@ -116,3 +117,29 @@ upset(dataset,
     )
 )
 }
+
+#user decides to highlight intersection
+upsetplotting2 <- function(dataset,title,min_int,high_int=FALSE, intgroups) {
+upset(dataset, 
+    intersect, 
+    name= paste(title),
+    width_ratio = 0.1,
+    min_size = min_int,
+    if (high_int){
+    queries= list(
+        upset_query(
+            #highlighting any # of intersections
+            intersect=intgroups,
+            color="red",
+            fill="red"
+        )
+    )
+},
+    set_sizes=(
+        upset_set_size()
+        + theme(axis.ticks.x=element_line())
+    )
+)
+}
+
+upsetplotting2(a, "plot title yay", 25, high_int= TRUE, intgroups= c("A","D"))
