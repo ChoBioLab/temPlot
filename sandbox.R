@@ -43,13 +43,13 @@ ggplot(a, aes(x = factor(cyl), y = mpg, color = factor(cyl))) +
   xlab("cyl") +
   ylab("mpg")
 #in function
-geomboxfunction <- function(dataset1, xval1, yval1, maintitle) {
+geomboxfunction <- function(dataset1, xval1, yval1, xlab1, ylab1, maintitle) {
   dataset1[[xval1]] <- factor(dataset1[[xval1]])
   return(
     ggplot(dataset1, aes_string(x = xval1, y = yval1, color = xval1)) +
       geom_boxplot() +
-      labs(x=paste(xval1, collapse = NULL),
-        y=paste(yval1, collapse = NULL), 
+      labs(x=paste(xlab1, collapse = NULL),
+        y=paste(ylab1, collapse = NULL), 
         title= paste(maintitle, collapse = NULL)
         ) +
       theme(
@@ -58,7 +58,7 @@ geomboxfunction <- function(dataset1, xval1, yval1, maintitle) {
   )
 }
 
-geomboxfunction(mtcars, "cyl", "mpg", geomboxfunction(mtcars, "cyl", "mpg", "Cyl vs Mpg in Cool Cars"))
+geomboxfunction(mtcars, "cyl", "mpg", "cylinder", "miles per gallon", "Cyl vs Mpg in Cool Cars")
 
 
 #venn diagram
